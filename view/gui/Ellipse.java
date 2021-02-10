@@ -9,19 +9,18 @@ import view.interfaces.IShapeInterface;
 import java.awt.*;
 
 public class Ellipse implements IShapeInterface {
-
+    private Color primaryColor, secondaryColor;
     private ShapeConfiguration shapeConfig;
     private ShapeShadingType shapeShadingType;
-    private Color primaryColor, secondaryColor;
     private int width, height;
     private Points adjustedStart, adjustedEnd, startPoint;
     private ShapeType shapeType;
 
     public Ellipse(ShapeConfiguration shapeConfiguration) {
-        this.shapeConfig = shapeConfiguration;
-        this.shapeShadingType = shapeConfiguration.getShadingType();
         this.primaryColor = SingletonColor.getColor(shapeConfiguration.getPrimaryColor());
         this.secondaryColor = SingletonColor.getColor(shapeConfiguration.getSecondaryColor());
+        this.shapeShadingType = shapeConfiguration.getShadingType();
+        this.shapeConfig = shapeConfiguration;
         this.width = shapeConfiguration.getWidth();
         this.height = shapeConfiguration.getHeight();
         this.adjustedStart = shapeConfiguration.getAdjustedStart();
@@ -64,25 +63,16 @@ public class Ellipse implements IShapeInterface {
     public void setAdjustedEnd(Points adjustedEnd) {
         this.adjustedEnd = adjustedEnd;
     }
-
     public Points getAdjustedStart() {
         return adjustedStart;
     }
 
     @Override
-    public Points getAdjustedEnd() {
+    public Points getAdjustedEnd(){
         return adjustedEnd;
     }
-
-    @Override
-    public Points getStartPoint() {
-        return startPoint;
-    }
-
-    @Override
-    public Points getEndPoint() {
-        return adjustedEnd;
-    }
+    public Points getStartPoint() { return startPoint; }
+    public Points getEndPoint() {return adjustedEnd; }
 
     @Override
     public void addX(int dx) {
@@ -97,18 +87,7 @@ public class Ellipse implements IShapeInterface {
         adjustedEnd.setY(adjustedEnd.getY() + dy);
     }
 
-    public ShapeConfiguration getShapeConfiguration() {
-        return shapeConfig;
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
-    }{
-    }
+    public ShapeConfiguration getShapeConfiguration() {return shapeConfig; }
+    public int getWidth(){return width; }
+    public int getHeight(){return height; }
 }

@@ -10,19 +10,19 @@ import java.awt.*;
 public class Triangle implements IShapeInterface {
 
     private ShapeConfiguration shapeConfiguration;
-    private ShapeShadingType shapeShadingType;
     private Color primaryColor, secondaryColor;
-    private int width, height;
+    private ShapeShadingType shapeShadingType;
     private Points adjustedStart, adjustedEnd, startPoint;
+    private int width, height;
     private int[] x = new int[3];
     private int[] y = new int[3];
 
 
     public Triangle(ShapeConfiguration shapeConfiguration) {
         this.shapeConfiguration = shapeConfiguration;
-        this.shapeShadingType = shapeConfiguration.getShadingType();
         this.primaryColor = SingletonColor.getColor(shapeConfiguration.getPrimaryColor());
         this.secondaryColor = SingletonColor.getColor(shapeConfiguration.getSecondaryColor());
+        this.shapeShadingType = shapeConfiguration.getShadingType();
         this.adjustedStart = shapeConfiguration.getAdjustedStart();
         this.adjustedEnd = shapeConfiguration.getAdjustedEnd();
         this.startPoint = shapeConfiguration.getStartPoint();
@@ -73,65 +73,56 @@ public class Triangle implements IShapeInterface {
     }
 
 
-    public boolean contains(Points startPoint) {
-        if (isInside(x[0], y[0], x[1], y[1], x[2], y[2], startPoint.getX(), startPoint.getY())) {
+    public boolean contains(Points startPoint){
+        if (isInside(x[0],y[0],x[1],y[1],x[2],y[2],startPoint.getX(),startPoint.getY())) {
             return true;
-        } else {
+        } else{
             return false;
         }
     }
 
-    public Points getStartPoint() {
+    public Points getStartPoint(){
         return startPoint;
     }
 
-    public Points getEndPoint() {
+    public Points getEndPoint(){
         return adjustedEnd;
     }
 
     @Override
-    public void setAdjustedStart(Points adjustedStart) {
+    public void setAdjustedStart(Points adjustedStart){
         this.adjustedStart = adjustedStart;
     }
 
     @Override
-    public void setAdjustedEnd(Points adjustedEnd) {
+    public void setAdjustedEnd(Points adjustedEnd){
         this.adjustedEnd = adjustedEnd;
     }
 
-    public Points getAdjustedStart() {
+    public Points getAdjustedStart(){
         return adjustedStart;
     }
 
     @Override
-    public Points getAdjustedEnd() {
+    public Points getAdjustedEnd(){
         return adjustedEnd;
     }
 
-    @Override
-    public void addX(int dx) {
-        this.x[0] = adjustedStart.getX() + dx;
-        this.x[1] = adjustedEnd.getX() + dx;
-        this.x[2] = adjustedStart.getX() + dx;
-    }
 
+    @Override
+    public void addX(int dx){
+        this.x[0] = adjustedStart.getX()+dx;
+        this.x[1] = adjustedEnd.getX()+dx;
+        this.x[2] = adjustedStart.getX()+dx;
+    }
     @Override
     public void addY(int dy) {
-        this.y[0] = adjustedStart.getY() + dy;
-        this.y[1] = adjustedEnd.getY() + dy;
-        this.y[2] = adjustedEnd.getY() + dy;
+        this.y[0] = adjustedStart.getY()+dy;
+        this.y[1] = adjustedEnd.getY()+dy;
+        this.y[2] = adjustedEnd.getY()+dy;
     }
 
-    public ShapeConfiguration getShapeConfiguration() {
-        return shapeConfiguration;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }{
-    }
+    public ShapeConfiguration getShapeConfiguration() { return shapeConfiguration; }
+    public int getWidth() { return width; }
+    public int getHeight() {return height; }
 }
