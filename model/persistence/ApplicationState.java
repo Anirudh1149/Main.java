@@ -57,6 +57,16 @@ public class ApplicationState implements IApplicationState {
 
 
     @Override
+    public void setActivePrimaryColor(ShapeColor activePrimaryColor) {
+        this.activePrimaryColor = activePrimaryColor;
+    }
+
+    @Override
+    public void setActiveSecondaryColor(ShapeColor activeSecondaryColor) {
+        this.activeSecondaryColor = activeSecondaryColor;
+    }
+
+    @Override
     public void setStartPoint(Points startPoint) {
         this.startPoint = startPoint;
     }
@@ -103,7 +113,10 @@ public class ApplicationState implements IApplicationState {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
         observersNotification();
     }
-
+    @Override
+    public MouseMode getActiveStartAndEndPointMode() {
+        return activeMouseMode;
+    }
     public int getWidth() {
         return width;
     }
@@ -135,6 +148,16 @@ public class ApplicationState implements IApplicationState {
     @Override
     public MouseMode getActiveMouseMode() {
         return activeMouseMode;
+    }
+
+    @Override
+    public Points getStartPoint() {
+        return startPoint;
+    }
+
+    @Override
+    public Points getEndPoint() {
+        return endPoint;
     }
 
 

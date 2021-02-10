@@ -3,7 +3,7 @@ package main;
 import controller.IJPaintController;
 import controller.JPaintController;
 import model.ShapeConfiguration;
-import model.IShapeList;
+import model.ShapeList;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -17,7 +17,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-        IShapeList shapeList = new IShapeList();
+        ShapeList shapeList = new ShapeList();
         ShapeConfiguration shapeConfig = new ShapeConfiguration();
         PaintCanvas paintCanvas = new PaintCanvas(shapeList);
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);

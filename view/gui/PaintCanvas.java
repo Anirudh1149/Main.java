@@ -26,7 +26,7 @@ public class PaintCanvas  extends JComponent implements IShape {
             shape.draw(g);
         }
     }
-    public Graphics2D getGraphics2D() {
-        return (Graphics2D)getGraphics();
+        public Graphics2D getGraphics2D() {
+            return (Graphics2D)getGraphics();
+        }
     }
-}
