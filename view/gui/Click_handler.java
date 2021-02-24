@@ -60,9 +60,10 @@ public class Click_handler extends MouseAdapter {
                 break;
 
            /* case MOVE:
-                CommandMoveShape newMove = new CommandMoveShape(appState, shapeList);
+                ICommandCreateShape  newMove = new ICommandCreateShape(appState, shapeList);
                 newMove.execute();
-                break;*/
+                break;
+                */
 
             case SELECT:
                 ICommandSelectShape newSelect = new ICommandSelectShape(appState, shapeList);
