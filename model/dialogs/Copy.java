@@ -21,6 +21,6 @@ public class Copy implements ICommand {
         for (IShapeInterface shape : shapeList.get_SelectedShapesList()) {
             shapeList.add_ShapesToClipboard(shape);
         }
-        System.out.println("Shapes Copied: "+shapeList.get_ClipBoardShapes().size());
+        System.out.println("copied shape: "+shapeList.get_ClipBoardShapes().size());
     }
 }
