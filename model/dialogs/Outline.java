@@ -15,7 +15,7 @@ public class Outline implements IOutline {
 
     private ShapeConfiguration shapeConfig;
     private IApplicationState applicationState;
-    private IShapeInterface shapess;
+    private IShapeInterface shapes;
     private IShapeList shapeList;
 
     public Outline(IApplicationState applicationState, IShapeList shapeList) {
@@ -30,14 +30,14 @@ public class Outline implements IOutline {
         ShapeType shapeType = shapeConfig.getShapeType();
         for (IShapeInterface shape : shapeList.getSelectShapesList()) {
             if (shapeType.equals(ShapeType.RECTANGLE)) {
-                shapess = new OutlineRectangle(shapeConfig,shape.getAdjustStart().getI(),shape.getAdjustStart().getJ(),shape.getWidth(), shape.getHeight());
-                this.shapeList.addShape(shapess);
+                shapes = new OutlineRectangle(shapeConfig,shape.getAdjustStart().getI(),shape.getAdjustStart().getJ(),shape.getWidth(), shape.getHeight());
+                this.shapeList.addShape(shapes);
             } else if (shapeType.equals(ShapeType.ELLIPSE)) {
-                shapess = new OutlineEllipse(shapeConfig,shape.getAdjustStart().getI(),shape.getAdjustStart().getJ(),shape.getWidth(), shape.getHeight());
-                this.shapeList.addShape(shapess);
+                shapes = new OutlineEllipse(shapeConfig,shape.getAdjustStart().getI(),shape.getAdjustStart().getJ(),shape.getWidth(), shape.getHeight());
+                this.shapeList.addShape(shapes);
             } else if (shapeType.equals(ShapeType.TRIANGLE)) {
-                shapess = new OutlineTriangle(shapeConfig,shape.getAdjustStart().getI(),shape.getAdjustStart().getJ(),shape.getAdjustEnd().getI(), shape.getAdjustEnd().getJ());
-                this.shapeList.addShape(shapess);
+                shapes = new OutlineTriangle(shapeConfig,shape.getAdjustStart().getI(),shape.getAdjustStart().getJ(),shape.getAdjustEnd().getI(), shape.getAdjustEnd().getJ());
+                this.shapeList.addShape(shapes);
             }
         }
     }
