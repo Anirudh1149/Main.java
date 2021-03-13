@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class MouseDrawer extends MouseAdapter {
+public class MDrawer extends MouseAdapter {
     private Points startPoint;
     private Points endPoint;
     private IApplicationState applicationState;
@@ -20,7 +20,7 @@ public class MouseDrawer extends MouseAdapter {
     ArrayList<ShapeColor> shapecolor = new ArrayList();
 
 
-    public MouseDrawer(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
+    public MDrawer(IShapeList shapeList, ShapeConfiguration shapeConfiguration, IApplicationState applicationState) {
         this.applicationState = applicationState;
         this.shapeList = shapeList;
         this.shapeConfiguration = shapeConfiguration;
@@ -31,7 +31,7 @@ public class MouseDrawer extends MouseAdapter {
     public void mouseReleased(MouseEvent e) {
         endPoint = new Points(e.getX(), e.getY());
         applicationState.setEndPoint(endPoint);
-        ICommandCreateShape newShape = new ICommandCreateShape(applicationState, shapeList, shapeConfiguration);
+        ICommandCreateShape newShape = new ICommandCreateShape(shapeList, shapeConfiguration,applicationState);
         newShape.execute();
     }
 

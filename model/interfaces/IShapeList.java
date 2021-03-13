@@ -5,29 +5,29 @@ import view.interfaces.IShapeInterface;
 import java.util.ArrayList;
 
 public interface IShapeList {
-    void add_Shape(IShapeInterface shape);
+    void addShape(IShapeInterface shape);
 
-    void remove_Shape(IShapeInterface shape);
+    void deleteShape(IShapeInterface shape);
 
-    ArrayList<IShapeInterface> get_ShapeList();
+    ArrayList<IShapeInterface> getShapeList();
 
     void subscribe(IShape paintCanvas);
     void unsubcribe(IShape paintCanvas);
 
     void observerNotification();
-    void add_SelectedList(IShapeInterface shapes);
+    void add_SelectList(IShapeInterface shapes);
 
-    ArrayList<IShapeInterface> get_SelectedShapesList();
+    ArrayList<IShapeInterface> getSelectShapesList();
 
-    void selected_ListRemove();
+    void selectListDelete();
 
-    void selectedShapeListClear();
+    void selectShapeListClear();
 
-    void add_ShapesToClipboard(IShapeInterface shapes);
+    void addShapesToClipboard(IShapeInterface shapes);
 
-    void remove_ClipBoardShapes();
+    void removeClipBoardShape();
 
-    void clear_ClipBoard();
+    void clearClipBoard();
 
-    ArrayList<IShapeInterface> get_ClipBoardShapes();
+    ArrayList<IShapeInterface> getClipBoardShape();
 }

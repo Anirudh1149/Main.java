@@ -13,20 +13,20 @@ public class Ellipse implements IShapeInterface {
     private ShapeConfiguration shapeConfig;
     private ShapeShadingType shapeShadingType;
     private int width, height;
-    private Points adjustedStart, adjustedEnd, startPoint;
+    private Points adjustStart, adjustEnd, startPoint;
     private ShapeType shapeType;
 
-    public Ellipse(ShapeConfiguration shapeConfiguration) {
-        this.primaryColor = SingletonColor.getColor(shapeConfiguration.getPrimaryColor());
-        this.secondaryColor = SingletonColor.getColor(shapeConfiguration.getSecondaryColor());
-        this.shapeShadingType = shapeConfiguration.getShadingType();
-        this.shapeConfig = shapeConfiguration;
-        this.width = shapeConfiguration.getWidth();
-        this.height = shapeConfiguration.getHeight();
-        this.adjustedStart = shapeConfiguration.getAdjustedStart();
-        this.startPoint = shapeConfiguration.getStartPoint();
-        this.adjustedEnd = shapeConfiguration.getAdjustedEnd();
-        this.shapeType = shapeConfiguration.getShapeType();
+    public Ellipse(ShapeConfiguration shapeConfig) {
+        this.primaryColor = SingletonPattern.getColor(shapeConfig.getPrimaryColor());
+        this.secondaryColor = SingletonPattern.getColor(shapeConfig.getSecondaryColor());
+        this.shapeShadingType = shapeConfig.getShadingType();
+        this.shapeConfig = shapeConfig;
+        this.width = shapeConfig.getWidth();
+        this.height = shapeConfig.getHeight();
+        this.adjustStart = shapeConfig.getAdjustStart();
+        this.startPoint = shapeConfig.getStartPoint();
+        this.adjustEnd = shapeConfig.getAdjustEnd();
+        this.shapeType = shapeConfig.getShapeType();
     }
 
     @Override
@@ -35,59 +35,69 @@ public class Ellipse implements IShapeInterface {
         if (shapeShadingType.equals(ShapeShadingType.OUTLINE)) {
             g.setColor(primaryColor);
             g2.setStroke(new BasicStroke(8));
-            g.drawOval(adjustedStart.getX(), adjustedStart.getY(), width, height);
+            g.drawOval(adjustStart.getI(), adjustStart.getJ(), width, height);
         } else if (shapeShadingType.equals(ShapeShadingType.FILLED_IN)) {
             g.setColor(secondaryColor);
-            g.fillOval(adjustedStart.getX(), adjustedStart.getY(), width, height);
+            g.fillOval(adjustStart.getI(), adjustStart.getJ(), width, height);
         } else if (shapeShadingType.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)) {
             g.setColor(primaryColor);
             g2.setStroke(new BasicStroke(8));
-            g.drawOval(adjustedStart.getX(), adjustedStart.getY(), width, height);
+            g.drawOval(adjustStart.getI(), adjustStart.getJ(), width, height);
             g.setColor(secondaryColor);
-            g.fillOval(adjustedStart.getX(), adjustedStart.getY(), width, height);
+            g.fillOval(adjustStart.getI(), adjustStart.getJ(), width, height);
         }
     }
 
     @Override
     public boolean contains(Points startPoint) {
-        return (adjustedStart.getX() < startPoint.getX() && adjustedStart.getY() < startPoint.getY()
-                && adjustedStart.getX() + width > startPoint.getX() && adjustedStart.getY() + height > startPoint.getY());
+        return (adjustStart.getI() < startPoint.getI() && adjustStart.getJ() < startPoint.getJ()
+                && adjustStart.getI() + width > startPoint.getI() && adjustStart.getJ() + height > startPoint.getJ());
     }
 
     @Override
-    public void setAdjustedStart(Points adjustedStart) {
-        this.adjustedStart = adjustedStart;
+    public void setAdjustStart(Points adjustStart) {
+        this.adjustStart = adjustStart;
     }
 
     @Override
-    public void setAdjustedEnd(Points adjustedEnd) {
-        this.adjustedEnd = adjustedEnd;
+    public void setAdjustEnd(Points adjustEnd) {
+        this.adjustEnd = adjustEnd;
     }
-    public Points getAdjustedStart() {
-        return adjustedStart;
-    }
-
-    @Override
-    public Points getAdjustedEnd(){
-        return adjustedEnd;
-    }
-    public Points getStartPoint() { return startPoint; }
-    public Points getEndPoint() {return adjustedEnd; }
-
-    @Override
-    public void addX(int dx) {
-        adjustedStart.setX(adjustedStart.getX() + dx);
-        adjustedEnd.setX(adjustedEnd.getX() + dx);
-
+    public Points getAdjustStart() {
+        return adjustStart;
     }
 
     @Override
-    public void addY(int dy) {
-        adjustedStart.setY(adjustedStart.getY() + dy);
-        adjustedEnd.setY(adjustedEnd.getY() + dy);
+    public Points getAdjustEnd(){
+        return adjustEnd;
+    }
+    public Points getStartPoint() {
+        return startPoint;
+    }
+    public Points getEndPoint() {
+        return adjustEnd;
     }
 
-    public ShapeConfiguration getShapeConfiguration() {return shapeConfig; }
-    public int getWidth(){return width; }
-    public int getHeight(){return height; }
+    @Override
+    public void addI(int di) {
+        adjustStart.setI(adjustStart.getI() + di);
+        adjustEnd.setI(adjustEnd.getI() + di);
+
+    }
+
+    @Override
+    public void addJ(int dj) {
+        adjustStart.setJ(adjustStart.getJ() + dj);
+        adjustEnd.setJ(adjustEnd.getJ() + dj);
+    }
+
+    public ShapeConfiguration getShapeConfig() {
+        return shapeConfig;
+    }
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight(){
+        return height;
+    }
 }

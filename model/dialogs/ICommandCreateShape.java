@@ -12,21 +12,22 @@ public class ICommandCreateShape implements ICommand, IUndoable {
 
         ShapeFactory shapeFactory = new ShapeFactory();
         private final IApplicationState applicationState;
-        private ShapeConfiguration shapeConfiguration;
+        private ShapeConfiguration shapeConfig;
         private IShapeList shapeList;
         private IShapeInterface shape;
 
-        public ICommandCreateShape(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
-            this.applicationState = applicationState;
+        public ICommandCreateShape(IShapeList shapeList, ShapeConfiguration shapeConfig , IApplicationState applicationState ) {
             this.shapeList = shapeList;
-            this.shapeConfiguration = shapeConfiguration;
+            this.shapeConfig = shapeConfig;
+            this.applicationState = applicationState;
+
         }
 
         @Override
         public void execute() {
-            shapeConfiguration = applicationState.get_CurrentShapeConfig();
-            shape = shapeFactory.createShape(shapeConfiguration);
-            this.shapeList.add_Shape(shape);
+            shapeConfig = applicationState.getCurrentShapeConfig();
+            shape = shapeFactory.createShape(shapeConfig);
+            this.shapeList.addShape(shape);
             CommandHistory.add(this);
         }
 
@@ -36,12 +37,12 @@ public class ICommandCreateShape implements ICommand, IUndoable {
 
         @Override
         public void undo() {
-            shapeList.remove_Shape(shape);
+            shapeList.deleteShape(shape);
         }
 
         @Override
         public void redo() {
-            shapeList.add_Shape(shape);
+            shapeList.addShape(shape);
         }
 
 

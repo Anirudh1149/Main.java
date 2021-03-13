@@ -10,29 +10,30 @@ import java.util.ArrayList;
 public class ShapeList implements IShapeList {
     private final ArrayList<IShapeInterface> internalShapesList;
     private final ArrayList<IShape> observers;
-    private final ArrayList<IShapeInterface> selectedShapesList;
+    private final ArrayList<IShapeInterface> selectShapesList;
     private final ArrayList<IShapeInterface> clipBoard;
 
 
     public ShapeList() {
         internalShapesList = new ArrayList<IShapeInterface>();
         observers = new ArrayList<IShape>();
-        selectedShapesList = new ArrayList<IShapeInterface>();
+        selectShapesList = new ArrayList<IShapeInterface>();
         clipBoard = new ArrayList<IShapeInterface>();
 
     }
 
-    public void add_Shape(IShapeInterface shapes) {
+    public void addShape(IShapeInterface shapes) {
         internalShapesList.add(shapes);
         observerNotification();
     }
 
-    public void remove_Shape(IShapeInterface shape) {
+    public void deleteShape(IShapeInterface shape) {
         internalShapesList.remove(shape);
         observerNotification();
     }
 
-    public ArrayList<IShapeInterface> get_ShapeList() {
+    public ArrayList<IShapeInterface> getShapeList()
+    {
         return internalShapesList;
     }
 
@@ -42,7 +43,8 @@ public class ShapeList implements IShapeList {
     }
 
     @Override
-    public void unsubcribe(IShape observer) {
+    public void unsubcribe(IShape observer)
+    {
         observers.remove(observer);
     }
 
@@ -56,43 +58,45 @@ public class ShapeList implements IShapeList {
     }
 
 
-    public void add_SelectedList(IShapeInterface shapes) {
-        selectedShapesList.add(shapes);
+    public void add_SelectList(IShapeInterface shapes) {
+        selectShapesList.add(shapes);
 
     }
 
-    public void selected_ListRemove() {
-        selectedShapesList.removeAll(selectedShapesList);
+    public void selectListDelete() {
+        selectShapesList.removeAll(selectShapesList);
         observerNotification();
 
     }
 
-    public void selectedShapeListClear() {
-        selectedShapesList.clear();
+    public void selectShapeListClear()
+    {
+        selectShapesList.clear();
     }
 
-    public ArrayList<IShapeInterface> get_SelectedShapesList() {
-        return selectedShapesList;
+    public ArrayList<IShapeInterface> getSelectShapesList()
+    {
+        return selectShapesList;
     }
 
-    //Shape list clipboard
-
-    public void add_ShapesToClipboard(IShapeInterface shapes) {
+    public void addShapesToClipboard(IShapeInterface shapes) {
         clipBoard.add(shapes);
 
     }
 
-    public void remove_ClipBoardShapes() {
-        clipBoard.removeAll(selectedShapesList);
+    public void removeClipBoardShape() {
+        clipBoard.removeAll(selectShapesList);
         observerNotification();
 
     }
 
-    public void clear_ClipBoard() {
+    public void clearClipBoard()
+    {
         clipBoard.clear();
     }
 
-    public ArrayList<IShapeInterface> get_ClipBoardShapes() {
+    public ArrayList<IShapeInterface> getClipBoardShape()
+    {
         return clipBoard;
     }
 

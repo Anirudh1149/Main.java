@@ -5,14 +5,12 @@ import model.ShapeColor;
 import java.awt.*;
 import java.util.EnumMap;
 
-public class SingletonColor {
+public class SingletonPattern {
 
 
     private static final EnumMap<ShapeColor, Color> color = new EnumMap<>(ShapeColor.class);
 
     static {
-
-
         color.put(ShapeColor.BLACK, Color.BLACK);
         color.put(ShapeColor.BLUE, Color.BLUE);
         color.put(ShapeColor.CYAN, Color.CYAN);
@@ -28,16 +26,10 @@ public class SingletonColor {
         color.put(ShapeColor.YELLOW, Color.YELLOW);
 
     }
-
-    private SingletonColor() {
+    private SingletonPattern() {
     }
-
     public static Color getColor(ShapeColor enumColor) {
-
-
         return color.get(enumColor);
-
-
     }
 
 }

@@ -35,7 +35,7 @@ public class GuiWindow extends JFrame implements IGuiWindow {
     @Override
 	public JButton getButton(EventName eventName) {
 		if(!eventButtons.containsKey(eventName))
-			throw new NoSuchElementException("No button exists for action " + eventName.toString());
+			throw new NoSuchElementException("No more buttons exists to do action " + eventName.toString());
 		
 		return eventButtons.get(eventName);
 	}

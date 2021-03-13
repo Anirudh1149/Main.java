@@ -14,17 +14,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class Click_handler extends MouseAdapter {
+public class Click extends MouseAdapter {
     private Points startPoint, endPoint;
     private IApplicationState appState;
     private IShapeList shapeList;
     private ShapeConfiguration shapeConfig;
     ArrayList<ShapeColor> shapecolor = new ArrayList();
 
-    public Click_handler(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
+    public Click(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfig) {
         this.appState = applicationState;
         this.shapeList = shapeList;
-        this.shapeConfig = shapeConfiguration;
+        this.shapeConfig = shapeConfig;
     }
 
     @Override
@@ -55,15 +55,15 @@ public class Click_handler extends MouseAdapter {
 
         switch (mouseMode) {
             case DRAW:
-                ICommandCreateShape newShape = new ICommandCreateShape(appState, shapeList, shapeConfig);
+                ICommandCreateShape newShape = new ICommandCreateShape(shapeList, shapeConfig,appState);
                 newShape.execute();
                 break;
 
-           /* case MOVE:
-                ICommandCreateShape  newMove = new ICommandCreateShape(appState, shapeList);
+           case MOVE:
+                ICommandCreateShape  newMove = new ICommandCreateShape(shapeList, shapeConfig ,appState);
                 newMove.execute();
                 break;
-                */
+
 
             case SELECT:
                 ICommandSelectShape newSelect = new ICommandSelectShape(appState, shapeList);

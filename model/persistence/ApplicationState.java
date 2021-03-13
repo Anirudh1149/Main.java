@@ -21,7 +21,7 @@ public class ApplicationState implements IApplicationState {
     private ShapeColor activeSecondaryColor;
     private ShapeShadingType activeShapeShadingType;
     private MouseMode activeMouseMode;
-    private Points startPoint, endPoint, adjustedStart, adjustedEnd;
+    private Points startPoint, endPoint, adjustStart, adjustEnd;
     private int width, height;
 
     public ApplicationState(IUiModule uiModule) {
@@ -40,7 +40,7 @@ public class ApplicationState implements IApplicationState {
 
 
     @Override
-    public ShapeConfiguration get_CurrentShapeConfig() {
+    public ShapeConfiguration getCurrentShapeConfig() {
         ShapeConfiguration shapeConfig = new ShapeConfiguration();
         shapeConfig.setPrimaryColor(activePrimaryColor);
         shapeConfig.setSecondaryColor(activeSecondaryColor);
@@ -48,8 +48,8 @@ public class ApplicationState implements IApplicationState {
         shapeConfig.setShapeType(activeShapeType);
         shapeConfig.setEndPoint(endPoint);
         shapeConfig.setStartPoint(startPoint);
-        shapeConfig.setAdjustedStart(adjustedStart);
-        shapeConfig.setAdjustedEnd(adjustedEnd);
+        shapeConfig.setAdjustStart(adjustStart);
+        shapeConfig.setAdjustEnd(adjustEnd);
         shapeConfig.setWidth(width);
         shapeConfig.setHeight(height);
         return shapeConfig;
@@ -77,15 +77,15 @@ public class ApplicationState implements IApplicationState {
     }
 
     public void setWidth(int width) {
-        Points start = getAdjustedStart();
-        Points end = getAdjustedEnd();
-        this.width = end.getX() - start.getX();
+        Points start = getAdjustStart();
+        Points end = getAdjustEnd();
+        this.width = end.getI() - start.getI();
     }
 
     public void setHeight(int height) {
-        Points start = getAdjustedStart();
-        Points end = getAdjustedEnd();
-        this.height = end.getY() - start.getY();
+        Points start = getAdjustStart();
+        Points end = getAdjustEnd();
+        this.height = end.getJ() - start.getJ();
     }
 
     @Override
@@ -111,7 +111,7 @@ public class ApplicationState implements IApplicationState {
     @Override
     public void setActiveStartAndEndPointMode() {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
-        observersNotification();
+        observeNotification();
     }
     @Override
     public MouseMode getActiveStartAndEndPointMode() {
@@ -162,36 +162,36 @@ public class ApplicationState implements IApplicationState {
 
 
     @Override
-    public Points getAdjustedStart() {
-        int startX = Math.min(startPoint.getX(), endPoint.getX());
-        int startY = Math.min(startPoint.getY(), endPoint.getY());
-        adjustedStart = new Points(startX, startY);
-        return adjustedStart;
+    public Points getAdjustStart() {
+        int startX = Math.min(startPoint.getI(), endPoint.getI());
+        int startY = Math.min(startPoint.getJ(), endPoint.getJ());
+        adjustStart = new Points(startX, startY);
+        return adjustStart;
     }
 
     @Override
-    public Points getAdjustedEnd() {
-        int endX = Math.max(startPoint.getX(), endPoint.getX());
-        int endY = Math.max(startPoint.getY(), endPoint.getY());
-        adjustedEnd = new Points(endX, endY);
-        return adjustedEnd;
+    public Points getAdjustEnd() {
+        int endX = Math.max(startPoint.getI(), endPoint.getI());
+        int endY = Math.max(startPoint.getJ(), endPoint.getJ());
+        adjustEnd = new Points(endX, endY);
+        return adjustEnd;
     }
 
-    public void setAdjustedStart(Points adjustedStart) {
-        this.adjustedStart = adjustedStart;
+    public void setAdjustStart(Points adjustStart) {
+        this.adjustStart = adjustStart;
     }
 
-    public void setAdjustedEnd(Points adjustedEnd) {
-        this.adjustedEnd = adjustedEnd;
+    public void setAdjustEnd(Points adjustEnd) {
+        this.adjustEnd = adjustEnd;
     }
 
     @Override
-    public void observerRegister(MouseAdapterObserverInterface o) {
+    public void observeRegister(MouseAdapterObserverInterface o) {
         mouseObservers.add(o);
     }
 
     @Override
-    public void observersNotification() {
+    public void observeNotification() {
         for (MouseAdapterObserverInterface observer : mouseObservers) {
             observer.execute();
         }

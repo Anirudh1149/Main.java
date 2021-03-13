@@ -1,10 +1,8 @@
 package model;
 
-import model.MouseMode;
-import model.ShapeConfiguration;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
-import view.gui.MouseDrawer;
+import view.gui.MDrawer;
 import view.gui.PaintCanvas;
 import view.interfaces.MouseAdapterObserverInterface;
 
@@ -19,13 +17,13 @@ public class MouseObserver extends JFrame implements MouseAdapterObserverInterfa
     private IShapeList shapeList;
 
 
-    public MouseObserver(IApplicationState applicationState, PaintCanvas paintCanvas,ShapeConfiguration shapeConfiguration, IShapeList shapeList) {
+    public MouseObserver(IApplicationState applicationState, PaintCanvas paintCanvas, ShapeConfiguration shapeConfiguration, IShapeList shapeList) {
         this.applicationState = applicationState;
         this.paintCanvas = paintCanvas;
         this.shapeConfiguration = shapeConfiguration;
         this.shapeList = shapeList;
 
-        applicationState.observerRegister(this);
+        applicationState.observeRegister(this);
     }
 
     public void execute() {
@@ -40,7 +38,7 @@ public class MouseObserver extends JFrame implements MouseAdapterObserverInterfa
         if (startAndEndPointMode.equals(MouseMode.DRAW))
         {
             paintCanvas.setCursor((new Cursor(Cursor.CROSSHAIR_CURSOR)));
-            paintCanvas.addMouseListener(new MouseDrawer(applicationState, shapeList, shapeConfiguration));
+            paintCanvas.addMouseListener(new MDrawer(shapeList, shapeConfiguration,applicationState));
         }
 
     }

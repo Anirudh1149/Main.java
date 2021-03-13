@@ -1,5 +1,6 @@
 package model.interfaces;
 
-public interface MouseAdapterObserverInterface {
+public interface IMouseAdapterObserver {
+
     void execute();
 }

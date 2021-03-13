@@ -7,9 +7,9 @@ import view.interfaces.IShapeInterface;
 public class ICommandSelectShape implements ICommand {
 
     private IShapeList shapeList;
-    private IShapeInterface selectedShape;
+    private IShapeInterface selectShape;
     private IApplicationState applicationState;
-    Boolean containsSelectedShape = false;
+    Boolean containSelectShape = false;
 
     public ICommandSelectShape(IApplicationState applicationState, IShapeList shapeList) {
         this.shapeList = shapeList;
@@ -18,29 +18,29 @@ public class ICommandSelectShape implements ICommand {
 
     @Override
     public void execute() {
-        System.out.println("Select mode...");
+        System.out.println("MODE");
 
-        for (IShapeInterface shape : shapeList.get_ShapeList()) {
+        for (IShapeInterface shape : shapeList.getShapeList()) {
             boolean contain = shape.contains(applicationState.getStartPoint());
             if (contain) {
-                containsSelectedShape = true;
-                selectedShape = shape;
-                shapeList.add_SelectedList(selectedShape);
-                System.out.println(">> Shape selected. " + shapeList.get_SelectedShapesList().size());
+                containSelectShape = true;
+                selectShape = shape;
+                shapeList.add_SelectList(selectShape);
+                System.out.println(" Selected shape  " + shapeList.getSelectShapesList().size());
                 break;
             } else {
-                containsSelectedShape = false;
+                containSelectShape = false;
             }
         }
-        if (containsSelectedShape == false) {
-            shapeList.selectedShapeListClear();
-            shapeList.get_ClipBoardShapes().clear();
-            System.out.println("Shape List cleared. Shapes selected: " + shapeList.get_SelectedShapesList().size());
+        if (containSelectShape == false) {
+            shapeList.selectShapeListClear();
+            shapeList.getClipBoardShape().clear();
+            System.out.println("Cleared Shape List and  Shapes selected: " + shapeList.getSelectShapesList().size());
         }
     }
 
-    public IShapeInterface getSelectedShape() {
-        return selectedShape;
+    public IShapeInterface getSelectShape() {
+        return selectShape;
     }
 }
 

@@ -11,112 +11,129 @@ public class ShapeConfiguration {
     private Points endPoint;
     private ShapeShadingType shadingType;
     private  ShapeType shapeType;
-    private IShapeInterface selectedShape;
-    private Points adjustedStart;
-    private Points adjustedEnd;
+    private IShapeInterface selectShape;
+    private Points adjustStart;
+    private Points adjustEnd;
     private int width;
     private int height;
 
 
 
 
-    public void setPrimaryColor(ShapeColor primaryColor) {
+    public void setPrimaryColor(ShapeColor primaryColor)
+    {
         this.primaryColor = primaryColor;
     }
 
-    public void setSecondaryColor(ShapeColor secondaryColor) {
+    public void setSecondaryColor(ShapeColor secondaryColor)
+    {
         this.secondaryColor = secondaryColor;
     }
 
-    public void setStartPoint(Points startPoint) {
+    public void setStartPoint(Points startPoint)
+    {
         this.startPoint = startPoint;
     }
 
-    public void setEndPoint(Points endPoint) {
+    public void setEndPoint(Points endPoint)
+    {
         this.endPoint = endPoint;
     }
 
-    public void setShadingType(ShapeShadingType shadingType) {
-        this.shadingType = shadingType;
+    public void setShadingType(ShapeShadingType shadeType)
+    {
+        this.shadingType = shadeType;
     }
 
-    public void setShapeType(ShapeType shapeType) {
+    public void setShapeType(ShapeType shapeType)
+    {
         this.shapeType = shapeType;
     }
 
-    public ShapeColor getPrimaryColor() {
+    public ShapeColor getPrimaryColor()
+    {
         return primaryColor;
     }
 
-    public ShapeColor getSecondaryColor() {
+    public ShapeColor getSecondaryColor()
+    {
         return secondaryColor;
     }
 
-    public Points getStartPoint() {
+    public Points getStartPoint()
+    {
         return startPoint;
     }
 
-    public Points getEndPoint() {
+    public Points getEndPoint()
+    {
         return endPoint;
     }
 
-    public ShapeShadingType getShadingType() {
+    public ShapeShadingType getShadingType()
+    {
         return shadingType;
     }
 
-    public ShapeType getShapeType() {
+    public ShapeType getShapeType()
+    {
         return shapeType;
     }
 
 
-    public void setWidth(int width) {
+    public void setWidth(int width)
+    {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(int height)
+    {
         this.height = height;
     }
 
-    public int getWidth() {
-        Points adjustedStart = getAdjustedStart();
-        Points adjustedEnd = getAdjustedEnd();
-        return adjustedEnd.getX() - adjustedStart.getX();
+    public int getWidth()
+    {
+        Points adjustStart = getAdjustStart();
+        Points adjustEnd = getAdjustEnd();
+        return adjustEnd.getI() - adjustStart.getI();
     }
 
     public int getHeight() {
-        Points adjustedStart = getAdjustedStart();
-        Points adjustedEnd = getAdjustedEnd();
-        return adjustedEnd.getY() - adjustedStart.getY();
+        Points adjustedStart = getAdjustStart();
+        Points adjustedEnd = getAdjustEnd();
+        return adjustedEnd.getJ() - adjustedStart.getJ();
     }
 
-    public Points getAdjustedStart() {
-        int startX = Math.min(startPoint.getX(), endPoint.getX());
-        int startY = Math.min(startPoint.getY(), endPoint.getY());
-        return new Points(startX, startY);
+    public Points getAdjustStart() {
+        int startI = Math.min(startPoint.getI(), endPoint.getI());
+        int startJ = Math.min(startPoint.getJ(), endPoint.getJ());
+        return new Points(startI, startJ);
     }
 
-    public Points getAdjustedEnd() {
-        int endX = Math.max(startPoint.getX(), endPoint.getX());
-        int endY = Math.max(startPoint.getY(), endPoint.getY());
-        return new Points(endX, endY);
+    public Points getAdjustEnd() {
+        int endI = Math.max(startPoint.getI(), endPoint.getI());
+        int endJ = Math.max(startPoint.getJ(), endPoint.getJ());
+        return new Points(endI, endJ);
     }
 
-    public void setAdjustedEnd(Points adjustedEnd) {
-        this.adjustedEnd = adjustedEnd;
+    public void setAdjustEnd(Points adjustEnd)
+    {
+        this.adjustEnd = adjustEnd;
     }
 
-    public void setAdjustedStart(Points adjustedStart) {
-        this.adjustedStart = adjustedStart;
+    public void setAdjustStart(Points adjustStart)
+    {
+        this.adjustStart = adjustStart;
     }
 
 
-    public void setSelectedShape(IShapeInterface shape) {
-        this.selectedShape = shape;
+    public void setSelectShape(IShapeInterface shape) {
+        this.selectShape = shape;
 
     }
 
     public IShapeInterface getSelectedShape() {
-        return selectedShape;
+        return selectShape;
     }
 }
 

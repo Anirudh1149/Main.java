@@ -9,30 +9,30 @@ import java.awt.*;
 
 public class Triangle implements IShapeInterface {
 
-    private ShapeConfiguration shapeConfiguration;
+    private ShapeConfiguration shapeConfig;
     private Color primaryColor, secondaryColor;
     private ShapeShadingType shapeShadingType;
-    private Points adjustedStart, adjustedEnd, startPoint;
+    private Points adjustStart, adjustEnd, startPoint;
     private int width, height;
-    private int[] x = new int[3];
-    private int[] y = new int[3];
+    private int[] i = new int[3];
+    private int[] j = new int[3];
 
 
-    public Triangle(ShapeConfiguration shapeConfiguration) {
-        this.shapeConfiguration = shapeConfiguration;
-        this.primaryColor = SingletonColor.getColor(shapeConfiguration.getPrimaryColor());
-        this.secondaryColor = SingletonColor.getColor(shapeConfiguration.getSecondaryColor());
-        this.shapeShadingType = shapeConfiguration.getShadingType();
-        this.adjustedStart = shapeConfiguration.getAdjustedStart();
-        this.adjustedEnd = shapeConfiguration.getAdjustedEnd();
-        this.startPoint = shapeConfiguration.getStartPoint();
-        this.x[0] = shapeConfiguration.getAdjustedStart().getX();
-        this.x[1] = shapeConfiguration.getAdjustedEnd().getX();
-        this.x[2] = shapeConfiguration.getAdjustedStart().getX();
+    public Triangle(ShapeConfiguration shapeConfig) {
+        this.shapeConfig = shapeConfig;
+        this.primaryColor = SingletonPattern.getColor(shapeConfig.getPrimaryColor());
+        this.secondaryColor = SingletonPattern.getColor(shapeConfig.getSecondaryColor());
+        this.shapeShadingType = shapeConfig.getShadingType();
+        this.adjustStart = shapeConfig.getAdjustStart();
+        this.adjustEnd = shapeConfig.getAdjustEnd();
+        this.startPoint = shapeConfig.getStartPoint();
+        this.i[0] = shapeConfig.getAdjustStart().getI();
+        this.i[1] = shapeConfig.getAdjustEnd().getI();
+        this.i[2] = shapeConfig.getAdjustStart().getI();
 
-        this.y[0] = shapeConfiguration.getAdjustedStart().getY();
-        this.y[1] = shapeConfiguration.getAdjustedEnd().getY();
-        this.y[2] = shapeConfiguration.getAdjustedEnd().getY();
+        this.j[0] = shapeConfig.getAdjustStart().getJ();
+        this.j[1] = shapeConfig.getAdjustEnd().getJ();
+        this.j[2] = shapeConfig.getAdjustEnd().getJ();
     }
 
 
@@ -41,18 +41,18 @@ public class Triangle implements IShapeInterface {
         if (shapeShadingType.equals(ShapeShadingType.OUTLINE)) {
             g.setColor(primaryColor);
             g2.setStroke(new BasicStroke(8));
-            g.drawPolygon(x, y, 3);
+            g.drawPolygon(i, j, 3);
 
         } else if (shapeShadingType.equals(ShapeShadingType.FILLED_IN)) {
             g.setColor(secondaryColor);
-            g.fillPolygon(x, y, 3);
+            g.fillPolygon(i, j, 3);
 
         } else if (shapeShadingType.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)) {
             g.setColor(primaryColor);
             g2.setStroke(new BasicStroke(8));
-            g.drawPolygon(x, y, 3);
+            g.drawPolygon(i, j, 3);
             g.setColor(secondaryColor);
-            g.fillPolygon(x, y, 3);
+            g.fillPolygon(i, j, 3);
         }
     }
 
@@ -60,7 +60,6 @@ public class Triangle implements IShapeInterface {
         return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
     }
 
-    // A function to check whether point P(x, y) lies inside the triangle
     boolean isInside(int x1, int y1, int x2, int y2, int x3, int y3, int x, int y) {
 
         double A = area(x1, y1, x2, y2, x3, y3);
@@ -68,13 +67,12 @@ public class Triangle implements IShapeInterface {
         double A2 = area(x1, y1, x, y, x3, y3);
         double A3 = area(x1, y1, x2, y2, x, y);
 
-        // Check if sum of A1, A2 and A3 is same as A
         return (A == A1 + A2 + A3);
     }
 
 
     public boolean contains(Points startPoint){
-        if (isInside(x[0],y[0],x[1],y[1],x[2],y[2],startPoint.getX(),startPoint.getY())) {
+        if (isInside(i[0],j[0],i[1],j[1],i[2],j[2],startPoint.getI(),startPoint.getJ())) {
             return true;
         } else{
             return false;
@@ -86,43 +84,43 @@ public class Triangle implements IShapeInterface {
     }
 
     public Points getEndPoint(){
-        return adjustedEnd;
+        return adjustEnd;
     }
 
     @Override
-    public void setAdjustedStart(Points adjustedStart){
-        this.adjustedStart = adjustedStart;
+    public void setAdjustStart(Points adjustStart){
+        this.adjustStart = adjustStart;
     }
 
     @Override
-    public void setAdjustedEnd(Points adjustedEnd){
-        this.adjustedEnd = adjustedEnd;
+    public void setAdjustEnd(Points adjustEnd){
+        this.adjustEnd = adjustEnd;
     }
 
-    public Points getAdjustedStart(){
-        return adjustedStart;
+    public Points getAdjustStart(){
+        return adjustStart;
     }
 
     @Override
-    public Points getAdjustedEnd(){
-        return adjustedEnd;
+    public Points getAdjustEnd(){
+        return adjustEnd;
     }
 
 
     @Override
-    public void addX(int dx){
-        this.x[0] = adjustedStart.getX()+dx;
-        this.x[1] = adjustedEnd.getX()+dx;
-        this.x[2] = adjustedStart.getX()+dx;
+    public void addI(int di){
+        this.i[0] = adjustStart.getI()+di;
+        this.i[1] = adjustEnd.getI()+di;
+        this.i[2] = adjustStart.getI()+di;
     }
     @Override
-    public void addY(int dy) {
-        this.y[0] = adjustedStart.getY()+dy;
-        this.y[1] = adjustedEnd.getY()+dy;
-        this.y[2] = adjustedEnd.getY()+dy;
+    public void addJ(int dj) {
+        this.j[0] = adjustStart.getJ()+dj;
+        this.j[1] = adjustEnd.getJ()+dj;
+        this.j[2] = adjustEnd.getJ()+dj;
     }
 
-    public ShapeConfiguration getShapeConfiguration() { return shapeConfiguration; }
+    public ShapeConfiguration getShapeConfig() { return shapeConfig; }
     public int getWidth() { return width; }
     public int getHeight() {return height; }
 }

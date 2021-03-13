@@ -10,14 +10,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class MouseSelector extends MouseAdapter {
+public class MSelector extends MouseAdapter {
     private Points startPoint;
     private Points endPoint;
     private IApplicationState appState;
     private IShapeList shapeList;
     ArrayList<ShapeColor> shapecolor = new ArrayList();
 
-    public MouseSelector(IApplicationState applicationState, IShapeList shapeList) {
+    public MSelector(IApplicationState applicationState, IShapeList shapeList) {
         this.appState = applicationState;
         this.shapeList = shapeList;
     }

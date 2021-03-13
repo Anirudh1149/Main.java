@@ -14,19 +14,19 @@ public interface IShapeInterface {
 
     Points getEndPoint();
 
-    void addX(int dx);
+    void addI(int di);
 
-    void addY(int dy);
+    void addJ(int dj);
 
-    void setAdjustedEnd(Points adjustedEnd);
+    void setAdjustEnd(Points adjustEnd);
 
-    void setAdjustedStart(Points adjustedStart);
+    void setAdjustStart(Points adjustStart);
 
-    Points getAdjustedStart();
+    Points getAdjustStart();
 
-    Points getAdjustedEnd();
+    Points getAdjustEnd();
 
-    ShapeConfiguration getShapeConfiguration();
+    ShapeConfiguration getShapeConfig();
 
     int getWidth();
 

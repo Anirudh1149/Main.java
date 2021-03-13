@@ -17,16 +17,18 @@ public class PaintCanvas  extends JComponent implements IShape {
 
     @Override
     public void updateShapeList() {
+
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        for (IShapeInterface shape : shapelist.get_ShapeList()) {
+        for (IShapeInterface shape : shapelist.getShapeList()) {
             shape.draw(g);
         }
     }
         public Graphics2D getGraphics2D() {
+
             return (Graphics2D)getGraphics();
         }
     }

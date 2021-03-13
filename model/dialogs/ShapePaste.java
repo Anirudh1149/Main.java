@@ -8,7 +8,7 @@ import view.interfaces.IShapeInterface;
 
 import java.util.ArrayList;
 
-public class Paste implements ICommand, IUndoable {
+public class ShapePaste implements ICommand, IUndoable {
     private IShapeList shapeList;
     private IApplicationState appState;
     private ShapeConfiguration shapeConfiguration;
@@ -16,7 +16,7 @@ public class Paste implements ICommand, IUndoable {
     private final ArrayList<IShapeInterface> tempShapeList = new ArrayList<IShapeInterface>();
 
 
-    public Paste(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
+    public ShapePaste(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
         this.appState = applicationState;
         this.shapeConfiguration = shapeConfiguration;
         this.shapeList = shapeList;
@@ -24,29 +24,29 @@ public class Paste implements ICommand, IUndoable {
 
     public void execute() {
 
-        for (IShapeInterface selectedShape : shapeList.get_SelectedShapesList()) {
+        for (IShapeInterface selectedShape : shapeList.getSelectShapesList()) {
             newShape = selectedShape;
-            selectedShape.addX(80);// Change to Zero
-            selectedShape.addY(80);// Change to Zero
+            selectedShape.addI(0);
+            selectedShape.addJ(0);
 
-            ICommandCreateShape shape = new ICommandCreateShape(appState, shapeList, selectedShape.getShapeConfiguration());
-            tempShapeList.add(shape.shapeFactory.createShape(selectedShape.getShapeConfiguration()));
+            ICommandCreateShape shape = new ICommandCreateShape( shapeList, selectedShape.getShapeConfig(),appState);
+            tempShapeList.add(shape.shapeFactory.createShape(selectedShape.getShapeConfig()));
         }
 
         for (IShapeInterface selectedShape : tempShapeList) {
-            shapeList.add_Shape(selectedShape);
+            shapeList.addShape(selectedShape);
         }
         CommandHistory.add(this);
     }
 
     @Override
     public void undo() {
-        shapeList.remove_Shape(newShape);
+        shapeList.deleteShape(newShape);
     }
 
     @Override
     public void redo() {
-        shapeList.add_Shape(newShape);
+        shapeList.addShape(newShape);
     }
 }
 

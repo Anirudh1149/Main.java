@@ -25,11 +25,11 @@ public interface IApplicationState {
     void setEndPoint(Points endPoint);
     Points getStartPoint();
     Points getEndPoint();
-    Points getAdjustedStart();
-    Points getAdjustedEnd();
-    ShapeConfiguration get_CurrentShapeConfig();
+    Points getAdjustStart();
+    Points getAdjustEnd();
+    ShapeConfiguration getCurrentShapeConfig();
     void setActivePrimaryColor(ShapeColor activePrimaryColor);
     void setActiveSecondaryColor(ShapeColor activeSecondaryColor);
-    void observerRegister(MouseAdapterObserverInterface o);
-    void observersNotification();
+    void observeRegister(MouseAdapterObserverInterface o);
+    void observeNotification();
 }

@@ -15,20 +15,22 @@ public class Rectangle implements IShapeInterface {
     private ShapeShadingType shapeShadingType;
     private Color primaryColor, secondaryColor;
     private int width, height;
-    private Points adjustedStart, adjustedEnd, startPoint, endPoint;
+    private Points adjustStart, adjustEnd, startPoint, endPoint;
     private ShapeType shapeType;
 
 
-    public Rectangle(ShapeConfiguration shapeConfiguration) {
-        this.shapeConfig = shapeConfiguration;
-        this.shapeShadingType=shapeConfiguration.getShadingType();
-        this.width = shapeConfiguration.getWidth();
-        this.height = shapeConfiguration.getHeight();
-        this.adjustedStart = shapeConfiguration.getAdjustedStart();
-        this.adjustedEnd = shapeConfiguration.getAdjustedEnd();
-        this.startPoint = shapeConfiguration.getStartPoint();
-        this.shapeType = shapeConfiguration.getShapeType();
-        this.endPoint = shapeConfiguration.getEndPoint();
+    public Rectangle(ShapeConfiguration shapeConfig) {
+        this.primaryColor = SingletonPattern.getColor(shapeConfig.getPrimaryColor());
+        this.secondaryColor = SingletonPattern.getColor(shapeConfig.getSecondaryColor());
+        this.shapeConfig = shapeConfig;
+        this.shapeShadingType=shapeConfig.getShadingType();
+        this.width = shapeConfig.getWidth();
+        this.height = shapeConfig.getHeight();
+        this.adjustStart = shapeConfig.getAdjustStart();
+        this.adjustEnd = shapeConfig.getAdjustEnd();
+        this.startPoint = shapeConfig.getStartPoint();
+        this.shapeType = shapeConfig.getShapeType();
+        this.endPoint = shapeConfig.getEndPoint();
     }
 
     @Override
@@ -37,14 +39,14 @@ public class Rectangle implements IShapeInterface {
 
         g.setColor(primaryColor);
         g2.setStroke(new BasicStroke(8));
-        g.fillRect(adjustedStart.getX(), adjustedStart.getY(), width, height);
+        g.fillRect(adjustStart.getI(), adjustStart.getJ(), width, height);
 
     }
 
     @Override
     public boolean contains(Points startPoint) {
-        return (adjustedStart.getX() < startPoint.getX() && adjustedStart.getY() < startPoint.getY()
-                && adjustedStart.getX() + width > startPoint.getX() && adjustedStart.getY() + height > startPoint.getY());
+        return (adjustStart.getI() < startPoint.getI() && adjustStart.getJ() < startPoint.getJ()
+                && adjustStart.getI() + width > startPoint.getI() && adjustStart.getJ() + height > startPoint.getJ());
     }
 
     @Override
@@ -64,44 +66,44 @@ public class Rectangle implements IShapeInterface {
 
     @Override
     public Points getEndPoint() {
-        return adjustedEnd;
+        return adjustEnd;
     }
 
     @Override
-    public void setAdjustedStart(Points adjustedStart) {
-        this.adjustedStart = adjustedStart;
+    public void setAdjustStart(Points adjustStart) {
+        this.adjustStart = adjustStart;
     }
 
     @Override
-    public void setAdjustedEnd(Points adjustedEnd) {
-        this.adjustedEnd = adjustedEnd;
+    public void setAdjustEnd(Points adjustEnd) {
+        this.adjustEnd = adjustEnd;
     }
 
     @Override
-    public Points getAdjustedStart() {
-        return adjustedStart;
+    public Points getAdjustStart() {
+        return adjustStart;
     }
 
     @Override
-    public Points getAdjustedEnd() {
-        return adjustedEnd;
+    public Points getAdjustEnd() {
+        return adjustEnd;
     }
 
     @Override
-    public void addX(int dx) {
-        adjustedStart.setX(adjustedStart.getX() + dx);
-        adjustedEnd.setX(adjustedEnd.getX() + dx);
+    public void addI(int di) {
+        adjustStart.setI(adjustStart.getI() + di);
+        adjustEnd.setI(adjustEnd.getI() + di);
     }
 
     @Override
-    public void addY(int dy) {
-        adjustedStart.setY(adjustedStart.getY() + dy);
-        adjustedEnd.setY(adjustedEnd.getY() + dy);
+    public void addJ(int dj) {
+        adjustStart.setJ(adjustStart.getJ() + dj);
+        adjustEnd.setJ(adjustEnd.getJ() + dj);
     }
 
 
     @Override
-    public ShapeConfiguration getShapeConfiguration() {
+    public ShapeConfiguration getShapeConfig() {
         return shapeConfig;
     }
 }

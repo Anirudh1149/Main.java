@@ -6,16 +6,16 @@ import view.gui.Triangle;
 import view.interfaces.IShapeInterface;
 
 public class ShapeFactory {
-    public IShapeInterface createShape(ShapeConfiguration shapeConfiguration) {
-        ShapeType shapeType = shapeConfiguration.getShapeType();
+    public IShapeInterface createShape(ShapeConfiguration shapeConfig) {
+        ShapeType shapeType = shapeConfig.getShapeType();
         IShapeInterface shape = null;
 
         if (shapeType.equals(ShapeType.RECTANGLE)) {
-            shape = new Rectangle(shapeConfiguration);
+            shape = new Rectangle(shapeConfig);
         } else if (shapeType.equals(ShapeType.ELLIPSE)) {
-            shape = new Ellipse(shapeConfiguration);
+            shape = new Ellipse(shapeConfig);
         } else if (shapeType.equals(ShapeType.TRIANGLE)) {
-            shape = new Triangle(shapeConfiguration);
+            shape = new Triangle(shapeConfig);
         }
         return shape;
     }
