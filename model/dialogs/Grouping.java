@@ -45,7 +45,8 @@ import java.util.ArrayList;
         }
 
 
-        public void addChild(IShapeInterface shape) {
+        public void addChild(IShapeInterface shape)
+        {
             group.add(shape);
         }
 
@@ -67,42 +68,50 @@ import java.util.ArrayList;
         }
 
         @Override
-        public int getWidth() {
+        public int getWidth()
+        {
             return width;
         }
 
         @Override
-        public int getHeight() {
+        public int getHeight()
+        {
             return height;
         }
 
         @Override
-        public Points getStartPoint() {
+        public Points getStartingPoint()
+        {
             return startPoint;
         }
 
         @Override
-        public Points getEndPoint() {
+        public Points getEndingPoint()
+        {
             return adjustEnd;
         }
 
         @Override
-        public void setAdjustStart(Points adjustStart) {
+        public void setAdjustStart(Points adjustStart)
+        {
             this.adjustStart = adjustStart;
         }
 
         @Override
-        public void setAdjustEnd(Points adjustEnd) {
+        public void setAdjustEnd(Points adjustEnd)
+        {
             this.adjustEnd = adjustEnd;
         }
 
         @Override
-        public Points getAdjustStart() {
+        public Points getAdjustStart()
+        {
             return adjustStart;
         }
 
         @Override
-        public Points getAdjustEnd() {
+        public Points getAdjustEnd()
+        {
             return adjustEnd;
         }
 

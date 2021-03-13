@@ -12,10 +12,10 @@ public interface IShapeList {
     ArrayList<IShapeInterface> getShapeList();
 
     void subscribe(IShape paintCanvas);
-    void unsubcribe(IShape paintCanvas);
+    void unsubscribe(IShape paintCanvas);
 
     void observerNotification();
-    void add_SelectList(IShapeInterface shapes);
+    void addSelectList(IShapeInterface shapes);
 
     ArrayList<IShapeInterface> getSelectShapesList();
 

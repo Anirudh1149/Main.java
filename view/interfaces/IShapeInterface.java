@@ -10,9 +10,9 @@ public interface IShapeInterface {
 
     boolean contains(Points start_Point);
 
-    Points getStartPoint();
+    Points getStartingPoint();
 
-    Points getEndPoint();
+    Points getEndingPoint();
 
     void addI(int di);
 

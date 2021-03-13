@@ -71,10 +71,10 @@ public class Ellipse implements IShapeInterface {
     public Points getAdjustEnd(){
         return adjustEnd;
     }
-    public Points getStartPoint() {
+    public Points getStartingPoint() {
         return startPoint;
     }
-    public Points getEndPoint() {
+    public Points getEndingPoint() {
         return adjustEnd;
     }
 

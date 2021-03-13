@@ -66,12 +66,12 @@ public class OutlineRectangle extends PaintCanvasBase implements IShapeInterface
     }
 
     @Override
-    public Points getStartPoint() {
+    public Points getStartingPoint() {
         return startPoint;
     }
 
     @Override
-    public Points getEndPoint() {
+    public Points getEndingPoint() {
         return adjustEnd;
     }
 

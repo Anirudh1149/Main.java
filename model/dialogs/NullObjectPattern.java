@@ -18,57 +18,67 @@ public class NullObjectPattern implements IShapeInterface {
     }
 
     @Override
-    public Points getStartPoint() {
+    public Points getStartingPoint() {
         return null;
     }
 
     @Override
-    public Points getEndPoint() {
+    public Points getEndingPoint()
+    {
         return null;
     }
 
     @Override
-    public void addI(int di) {
+    public void addI(int di)
+    {
         System.out.println("0 X coordinates for Null Shape");
     }
 
     @Override
-    public void addJ(int dj) {
+    public void addJ(int dj)
+    {
         System.out.println("0 Y coordinates for Null Shape");
     }
 
     @Override
-    public void setAdjustEnd(Points adjustEnd) {
+    public void setAdjustEnd(Points adjustEnd)
+    {
         System.out.println("0 End coordinates for Null Shape");
     }
 
     @Override
-    public void setAdjustStart(Points adjustStart) {
+    public void setAdjustStart(Points adjustStart)
+    {
         System.out.println("0 Start coordinates for Null Shape");
     }
 
     @Override
-    public Points getAdjustStart() {
+    public Points getAdjustStart()
+    {
         return null;
     }
 
     @Override
-    public Points getAdjustEnd() {
+    public Points getAdjustEnd()
+    {
         return null;
     }
 
     @Override
-    public ShapeConfiguration getShapeConfig() {
+    public ShapeConfiguration getShapeConfig()
+    {
         return null;
     }
 
     @Override
-    public int getWidth() {
+    public int getWidth()
+    {
         return 0;
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight()
+    {
         return 0;
     }
 

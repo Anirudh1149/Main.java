@@ -19,8 +19,6 @@ public interface IApplicationState {
     ShapeShadingType getActiveShapeShadingType();
     MouseMode getActiveMouseMode();
     MouseMode getActiveStartAndEndPointMode();
-
-
     void setStartPoint(Points startPoint);
     void setEndPoint(Points endPoint);
     Points getStartPoint();

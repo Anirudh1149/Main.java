@@ -50,22 +50,26 @@ public class Rectangle implements IShapeInterface {
     }
 
     @Override
-    public int getWidth() {
+    public int getWidth()
+    {
         return width;
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight()
+    {
         return height;
     }
 
     @Override
-    public Points getStartPoint() {
+    public Points getStartingPoint()
+    {
         return startPoint;
     }
 
     @Override
-    public Points getEndPoint() {
+    public Points getEndingPoint()
+    {
         return adjustEnd;
     }
 

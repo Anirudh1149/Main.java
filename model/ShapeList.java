@@ -43,7 +43,7 @@ public class ShapeList implements IShapeList {
     }
 
     @Override
-    public void unsubcribe(IShape observer)
+    public void unsubscribe(IShape observer)
     {
         observers.remove(observer);
     }
@@ -58,7 +58,7 @@ public class ShapeList implements IShapeList {
     }
 
 
-    public void add_SelectList(IShapeInterface shapes) {
+    public void addSelectList(IShapeInterface shapes) {
         selectShapesList.add(shapes);
 
     }

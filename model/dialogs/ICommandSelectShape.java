@@ -1,7 +1,10 @@
 package model.dialogs;
 
+import model.ShapeConfiguration;
+import model.ShapeFactory;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
+import view.gui.Rectangle;
 import view.interfaces.IShapeInterface;
 
 public class ICommandSelectShape implements ICommand {
@@ -9,6 +12,8 @@ public class ICommandSelectShape implements ICommand {
     private IShapeList shapeList;
     private IShapeInterface selectShape;
     private IApplicationState applicationState;
+    private ShapeConfiguration shapeConfiguration;
+    private IShapeInterface shapes, sp;
     Boolean containSelectShape = false;
 
     public ICommandSelectShape(IApplicationState applicationState, IShapeList shapeList) {
@@ -20,12 +25,29 @@ public class ICommandSelectShape implements ICommand {
     public void execute() {
         System.out.println("MODE");
 
+        shapeConfiguration = applicationState.getCurrentShapeConfig();
+        shapes = new Rectangle(shapeConfiguration);
+        this.shapeList.addShape(shapes);
+
         for (IShapeInterface shape : shapeList.getShapeList()) {
             boolean contain = shape.contains(applicationState.getStartPoint());
+            if ((shapes.getAdjustEnd().getI()) < (shape.getAdjustEnd().getI())) {
+                shapeList.addSelectList(shape);
+            } else if ((shapes.getAdjustEnd().getI()) > (shape.getAdjustEnd().getI())) {
+                shapeList.addSelectList(shape);
+            } else if ((shapes.getAdjustEnd().getJ()) < (shape.getAdjustEnd().getJ())) {
+                shapeList.addSelectList(shape);
+            } else if ((shapes.getAdjustEnd().getJ()) > (shape.getAdjustEnd().getJ())) {
+                shapeList.addSelectList(shape);
+            } else if ((containSelectShape == false) && (shapes.getAdjustEnd() != null)) {
+                shapeList.addSelectList(shape);
+            } else {
+
+            }
             if (contain) {
                 containSelectShape = true;
                 selectShape = shape;
-                shapeList.add_SelectList(selectShape);
+                shapeList.addSelectList(selectShape);
                 System.out.println(" Selected shape  " + shapeList.getSelectShapesList().size());
                 break;
             } else {
@@ -38,9 +60,11 @@ public class ICommandSelectShape implements ICommand {
             System.out.println("Cleared Shape List and  Shapes selected: " + shapeList.getSelectShapesList().size());
         }
     }
+    public boolean containSelectShape() {
+        return containSelectShape;
+    }
 
     public IShapeInterface getSelectShape() {
         return selectShape;
     }
 }
-
