@@ -26,8 +26,8 @@ public class ShapePaste implements ICommand, IUndoable {
 
         for (IShapeInterface selectedShape : shapeList.getSelectShapesList()) {
             newShape = selectedShape;
-            selectedShape.addI(0);
-            selectedShape.addJ(0);
+            selectedShape.addI(20);
+            selectedShape.addJ(20);
 
             ICommandCreateShape shape = new ICommandCreateShape( shapeList, selectedShape.getShapeConfig(),appState);
             tempShapeList.add(shape.shapeFactory.createShape(selectedShape.getShapeConfig()));
