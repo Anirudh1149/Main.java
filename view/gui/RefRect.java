@@ -1,15 +1,14 @@
 package view.gui;
 
-import java.awt.*;
-
 import model.Points;
 import model.ShapeConfiguration;
 import model.ShapeShadingType;
 import model.ShapeType;
 import view.interfaces.IShapeInterface;
 
+import java.awt.*;
 
-public class Rectangle implements IShapeInterface {
+public class RefRect implements IShapeInterface {
 
     private ShapeConfiguration shapeConfig;
     private ShapeShadingType shapeShadingType;
@@ -20,7 +19,7 @@ public class Rectangle implements IShapeInterface {
     private ShapeType shapeType;
 
 
-    public Rectangle(ShapeConfiguration shapeConfig) {
+    public RefRect(ShapeConfiguration shapeConfig) {
         this.primaryColor = SingletonPattern.getColor(shapeConfig.getPrimaryColor());
         this.secondaryColor = SingletonPattern.getColor(shapeConfig.getSecondaryColor());
         this.shapeConfig = shapeConfig;
@@ -37,32 +36,12 @@ public class Rectangle implements IShapeInterface {
     @Override
     public void draw(Graphics g) {
 
-        painting=(Graphics2D) g;
-        if (shapeShadingType.equals(ShapeShadingType.OUTLINE)) {
-            g.setColor(primaryColor);
-            painting.setStroke(new BasicStroke(8));
-            g.drawRect(adjustStart.getI(), adjustStart.getJ(), width, height);
-        } else if (shapeShadingType.equals(ShapeShadingType.FILLED_IN)) {
-            g.setColor(secondaryColor);
-            g.fillRect(adjustStart.getI(), adjustStart.getJ(), width, height);
-        } else if (shapeShadingType.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)) {
-            g.setColor(primaryColor);
-            painting.setStroke(new BasicStroke(8));
-            g.drawRect(adjustStart.getI(), adjustStart.getJ(), width, height);
-            g.setColor(secondaryColor);
-            g.fillRect(adjustStart.getI(), adjustStart.getJ(), width, height);
-        }
+        Color color=new Color(0,0,0,0.0f);
+        g.setColor(color);
+        g.drawRect(adjustStart.getI(), adjustStart.getJ(), width, height);
+
     }
 
-
-    /*
-        Graphics2D g2 = (Graphics2D) g;
-
-        g.setColor(primaryColor);
-        g2.setStroke(new BasicStroke(8));
-        g.fillRect(adjustStart.getI(), adjustStart.getJ(), width, height);
-
-    }*/
 
     @Override
     public boolean contains(Points startPoint) {

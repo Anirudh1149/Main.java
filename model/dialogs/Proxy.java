@@ -29,8 +29,8 @@ public class Proxy implements IOutline {
         @Override
         public void outline() {
             if(selectShape.containSelectShape()){
-                Outline outlineClass =new Outline(applicationState,shapeList);
-                outlineClass.outline();
+                Outline outline =new Outline(applicationState,shapeList);
+                outline.outline();
             }
         }
     }

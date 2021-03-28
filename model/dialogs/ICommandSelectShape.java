@@ -5,6 +5,7 @@ import model.ShapeFactory;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
 import view.gui.Rectangle;
+import view.gui.RefRect;
 import view.interfaces.IShapeInterface;
 
 public class ICommandSelectShape implements ICommand {
@@ -26,7 +27,7 @@ public class ICommandSelectShape implements ICommand {
         System.out.println("MODE");
 
         shapeConfiguration = applicationState.getCurrentShapeConfig();
-        shapes = new Rectangle(shapeConfiguration);
+        shapes = new RefRect(shapeConfiguration);
         this.shapeList.addShape(shapes);
 
         for (IShapeInterface shape : shapeList.getShapeList()) {
