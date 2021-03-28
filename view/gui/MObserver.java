@@ -47,7 +47,7 @@ public class MObserver extends JFrame implements MouseAdapterObserverInterface {
         else if (startAndEndPointMode.equals(MouseMode.MOVE))
         {
             paintCanvas.setCursor((new Cursor(Cursor.MOVE_CURSOR)));
-            paintCanvas.addMouseListener(new MDrawer(shapeList, shapeConfig,applicationState));
+            paintCanvas.addMouseListener(new MMover(applicationState, shapeList,shapeConfig));
         }
 
 

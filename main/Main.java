@@ -7,7 +7,6 @@ import model.ShapeList;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
-import model.MouseObserver;
 import view.gui.MObserver;
 import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;

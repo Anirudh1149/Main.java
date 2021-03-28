@@ -5,6 +5,7 @@ import model.interfaces.IOutline;
 import model.interfaces.IShapeList;
 
 
+
 public class Proxy implements IOutline {
 
     ICommand commandInterface;
@@ -12,7 +13,7 @@ public class Proxy implements IOutline {
     private IShapeList shapeList;
 
     private ICommandSelectShape selectShape=null;
-    private ICommandCreateShape moveShape=null;
+    private Moveshape moveshape=null;
 
 
         public Proxy(ICommand command, IApplicationState applicationState, IShapeList shapeList) {

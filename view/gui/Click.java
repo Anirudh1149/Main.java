@@ -6,6 +6,7 @@ import model.ShapeColor;
 import model.ShapeConfiguration;
 import model.dialogs.ICommandCreateShape;
 import model.dialogs.ICommandSelectShape;
+import model.dialogs.Moveshape;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
 
@@ -60,7 +61,7 @@ public class Click extends MouseAdapter {
                 break;
 
            case MOVE:
-                ICommandCreateShape  newMove = new ICommandCreateShape(shapeList, shapeConfig ,appState);
+                Moveshape newMove = new Moveshape(appState,shapeList);
                 newMove.execute();
                 break;
 
