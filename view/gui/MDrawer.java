@@ -7,6 +7,7 @@ import model.ShapeConfiguration;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
 
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -24,6 +25,23 @@ public class MDrawer extends MouseAdapter {
         this.applicationState = applicationState;
         this.shapeList = shapeList;
         this.shapeConfiguration = shapeConfig;
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+        ShapeColor primaryColor = applicationState.getActivePrimaryColor();
+        shapecolor.add(primaryColor);
+        ShapeColor secondaryColor = applicationState.getActiveSecondaryColor();
+        shapecolor.add(secondaryColor);
+
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            applicationState.setActivePrimaryColor(shapecolor.get(0));
+            applicationState.setActiveSecondaryColor(shapecolor.get(1));
+
+        } else if (SwingUtilities.isRightMouseButton(e)) {
+            applicationState.setActivePrimaryColor(shapecolor.get(1));
+            applicationState.setActiveSecondaryColor(shapecolor.get(0));
+        }
     }
 
 
