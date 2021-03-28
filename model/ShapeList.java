@@ -79,6 +79,10 @@ public class ShapeList implements IShapeList {
         return selectShapesList;
     }
 
+    public ArrayList<IShapeInterface> getInternalShapesList() {
+        return internalShapesList;
+    }
+
     public void addShapesToClipboard(IShapeInterface shapes) {
         clipBoard.add(shapes);
 

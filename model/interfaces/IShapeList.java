@@ -18,6 +18,7 @@ public interface IShapeList {
     void addSelectList(IShapeInterface shapes);
 
     ArrayList<IShapeInterface> getSelectShapesList();
+    ArrayList<IShapeInterface> getInternalShapesList();
 
     void selectListDelete();
 
