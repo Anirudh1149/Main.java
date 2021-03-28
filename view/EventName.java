@@ -31,11 +31,46 @@ public enum EventName {
 			return "CHOOSE MOUSE MODE";
 		}
 	},
-	UNDO,
-	REDO,
-	COPY,
-	PASTE,
-	DELETE,
-	GROUP,
-	UNGROUP
+	UNDO{
+		@Override
+		public String toString() {
+		return "UNDO";
+	}
+	},
+	REDO{
+		@Override
+		public String toString() {
+			return "REDO";
+		}
+	},
+	COPY{
+		@Override
+		public String toString() {
+			return "COPY";
+		}
+	},
+	PASTE{
+		@Override
+		public String toString() {
+			return "PASTE";
+		}
+	},
+	DELETE{
+		@Override
+		public String toString() {
+			return "DELETE";
+		}
+	},
+	GROUP{
+		@Override
+		public String toString() {
+			return "GROUP";
+		}
+	},
+	UNGROUP{
+		@Override
+		public String toString() {
+			return "UNGROUP";
+		}
+	},
 }
