@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class GroupingShape implements ICommand{
-    private IShapeList shapeList,shapeto;
+    private IShapeList shapeList,shape;
     private IShapeInterface selectShape;
     private IShapeInterface len,bre;
     private IApplicationState applicationState;

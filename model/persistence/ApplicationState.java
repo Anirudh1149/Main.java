@@ -6,8 +6,8 @@ import model.dialogs.DialogProvider;
 import model.dialogs.Proxy;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
+import view.interfaces.IMouseAdapterObserver;
 import view.interfaces.IUiModule;
-import view.interfaces.MouseAdapterObserverInterface;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class ApplicationState implements IApplicationState {
     private final IDialogProvider dialogProvider;
 
     private ShapeType activeShapeType;
-    private ArrayList<MouseAdapterObserverInterface> mouseObservers = new ArrayList<>();
+    private ArrayList<IMouseAdapterObserver> mouseObservers = new ArrayList<>();
     private ShapeColor activePrimaryColor;
     private ShapeColor activeSecondaryColor;
     private ShapeShadingType activeShapeShadingType;
@@ -189,13 +189,13 @@ public class ApplicationState implements IApplicationState {
     }
 
     @Override
-    public void observeRegister(MouseAdapterObserverInterface o) {
+    public void observeRegister(IMouseAdapterObserver o) {
         mouseObservers.add(o);
     }
 
     @Override
     public void observeNotification() {
-        for (MouseAdapterObserverInterface observer : mouseObservers) {
+        for (IMouseAdapterObserver observer : mouseObservers) {
             observer.execute();
         }
     }

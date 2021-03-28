@@ -1,9 +1,7 @@
 package model.interfaces;
 
-import model.Points;
 import model.*;
-import view.interfaces.MouseAdapterObserverInterface;
-import model.ShapeConfiguration;
+import view.interfaces.IMouseAdapterObserver;
 
 
 public interface IApplicationState {
@@ -28,6 +26,6 @@ public interface IApplicationState {
     ShapeConfiguration getCurrentShapeConfig();
     void setActivePrimaryColor(ShapeColor activePrimaryColor);
     void setActiveSecondaryColor(ShapeColor activeSecondaryColor);
-    void observeRegister(MouseAdapterObserverInterface o);
+    void observeRegister(IMouseAdapterObserver o);
     void observeNotification();
 }

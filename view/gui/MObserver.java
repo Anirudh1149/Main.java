@@ -3,14 +3,14 @@ package view.gui;
 import model.MouseMode;
 import model.ShapeConfiguration;
 import model.interfaces.IApplicationState;
+import view.interfaces.IMouseAdapterObserver;
 import model.interfaces.IShapeList;
-import view.interfaces.MouseAdapterObserverInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
 
-public class MObserver extends JFrame implements MouseAdapterObserverInterface {
+public class MObserver extends JFrame implements IMouseAdapterObserver {
     private IApplicationState applicationState;
     private PaintCanvas paintCanvas;
     private IShapeList shapeList;

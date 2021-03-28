@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class ShapePaste implements ICommand, IUndoable {
     private IShapeList shapeList;
     private IApplicationState appState;
-    private ShapeConfiguration shapeConfiguration;
+    private ShapeConfiguration shapeConfig;
     private IShapeInterface newShape;
     private final ArrayList<IShapeInterface> tempShapeList = new ArrayList<IShapeInterface>();
 
 
-    public ShapePaste(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
+    public ShapePaste(IApplicationState applicationState, IShapeList shapeList, ShapeConfiguration shapeConfig) {
         this.appState = applicationState;
-        this.shapeConfiguration = shapeConfiguration;
+        this.shapeConfig = shapeConfig;
         this.shapeList = shapeList;
     }
 

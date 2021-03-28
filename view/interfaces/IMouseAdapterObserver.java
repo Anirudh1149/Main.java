@@ -1,4 +1,4 @@
-package model.interfaces;
+package view.interfaces;
 
 public interface IMouseAdapterObserver {
 
