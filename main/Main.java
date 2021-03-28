@@ -8,6 +8,7 @@ import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
 import model.MouseObserver;
+import view.gui.MObserver;
 import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;
 import view.interfaces.IUiModule;
@@ -28,9 +29,9 @@ public class Main {
 
         paintCanvas.setCursor((new Cursor(Cursor.CROSSHAIR_CURSOR)));
 
-        IJPaintController paintController = new JPaintController(uiModule, appState, shapeConfig, shapeList);
-        MouseObserver mouseObserver = new MouseObserver(appState, paintCanvas, shapeConfig, shapeList);
-        mouseObserver.execute();
+        IJPaintController paintController = new JPaintController(uiModule, appState,shapeList,shapeConfig);
+        MObserver MObserver = new MObserver(appState, paintCanvas,shapeConfig, shapeList );
+        MObserver.execute();
         paintController.setup();
 
 

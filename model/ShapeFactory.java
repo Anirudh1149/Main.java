@@ -1,5 +1,6 @@
 package model;
 
+import model.dialogs.NullObjectPattern;
 import view.gui.Ellipse;
 import view.gui.Rectangle;
 import view.gui.Triangle;
@@ -16,7 +17,8 @@ public class ShapeFactory {
             shape = new Ellipse(shapeConfig);
         } else if (shapeType.equals(ShapeType.TRIANGLE)) {
             shape = new Triangle(shapeConfig);
-        }
+        }else
+            shape = new NullObjectPattern();
         return shape;
     }
 }

@@ -47,7 +47,7 @@ public class ICommandSelectShape implements ICommand {
             if (contain) {
                 containSelectShape = true;
                 selectShape = shape;
-                shapeList.addSelectList(selectShape);
+
                 System.out.println(" Selected shape  " + shapeList.getSelectShapesList().size());
                 break;
             } else {

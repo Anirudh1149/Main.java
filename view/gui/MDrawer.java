@@ -20,10 +20,10 @@ public class MDrawer extends MouseAdapter {
     ArrayList<ShapeColor> shapecolor = new ArrayList();
 
 
-    public MDrawer(IShapeList shapeList, ShapeConfiguration shapeConfiguration, IApplicationState applicationState) {
+    public MDrawer(IShapeList shapeList, ShapeConfiguration shapeConfig, IApplicationState applicationState) {
         this.applicationState = applicationState;
         this.shapeList = shapeList;
-        this.shapeConfiguration = shapeConfiguration;
+        this.shapeConfiguration = shapeConfig;
     }
 
 

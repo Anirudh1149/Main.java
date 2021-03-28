@@ -10,14 +10,14 @@ import view.interfaces.IUiModule;
 public class JPaintController implements IJPaintController{
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
-    public ShapeConfiguration shapeConfiguration;
+    public ShapeConfiguration shapeConfig;
     public IShapeList shapeList;
 
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState, ShapeConfiguration shapeConfiguration , IShapeList shapeList ){
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState,IShapeList shapeList, ShapeConfiguration shapeConfig){
         this.uiModule=uiModule;
         this.applicationState=applicationState;
-        this.shapeConfiguration=shapeConfiguration;
+        this.shapeConfig = shapeConfig;
         this.shapeList=shapeList;
 
      }
@@ -35,9 +35,9 @@ public class JPaintController implements IJPaintController{
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> new UndoICommand().execute());
         uiModule.addEvent(EventName.REDO, () -> new RedoICommand().execute());
-        uiModule.addEvent(EventName.COPY, () ->new ShapeCopy(applicationState, shapeList, shapeConfiguration).execute());
-        uiModule.addEvent(EventName.PASTE, () ->new ShapePaste(applicationState, shapeList, shapeConfiguration).execute());
-        uiModule.addEvent(EventName.DELETE, () ->new ShapeDelete(applicationState, shapeList, shapeConfiguration).execute());
+        uiModule.addEvent(EventName.COPY, () ->new ShapeCopy(applicationState, shapeList, shapeConfig).execute());
+        uiModule.addEvent(EventName.PASTE, () ->new ShapePaste(applicationState, shapeList, shapeConfig).execute());
+        uiModule.addEvent(EventName.DELETE, () ->new ShapeDelete(applicationState, shapeList, shapeConfig).execute());
         uiModule.addEvent(EventName.GROUP, () ->new GroupingShape(shapeList, applicationState).execute());
         uiModule.addEvent(EventName.UNGROUP, () ->new UnGroupingClass(shapeList,applicationState).execute());
 

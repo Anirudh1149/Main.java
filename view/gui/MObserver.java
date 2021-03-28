@@ -14,13 +14,13 @@ public class MObserver extends JFrame implements MouseAdapterObserverInterface {
     private IApplicationState applicationState;
     private PaintCanvas paintCanvas;
     private IShapeList shapeList;
-    private ShapeConfiguration shapeConfiguration;
+    private ShapeConfiguration shapeConfig;
 
-    public MObserver(IApplicationState applicationState, PaintCanvas paintCanvas, IShapeList shapeList, ShapeConfiguration shapeConfiguration) {
+    public MObserver(IApplicationState applicationState, PaintCanvas paintCanvas, ShapeConfiguration shapeConfig, IShapeList shapeList) {
         this.applicationState = applicationState;
         this.paintCanvas = paintCanvas;
         this.shapeList = shapeList;
-        this.shapeConfiguration = shapeConfiguration;
+        this.shapeConfig = shapeConfig;
         applicationState.observeRegister(this);
     }
 
@@ -36,8 +36,20 @@ public class MObserver extends JFrame implements MouseAdapterObserverInterface {
         if (startAndEndPointMode.equals(MouseMode.DRAW))
         {
             paintCanvas.setCursor((new Cursor(Cursor.CROSSHAIR_CURSOR)));
-            paintCanvas.addMouseListener(new MDrawer(shapeList,shapeConfiguration, applicationState));
+            paintCanvas.addMouseListener(new MDrawer(shapeList,shapeConfig, applicationState));
         }
+        else if (startAndEndPointMode.equals(MouseMode.SELECT))
+        {
+            paintCanvas.setCursor((new Cursor(Cursor.HAND_CURSOR)));
+            paintCanvas.addMouseListener(new MSelector(applicationState, shapeList));
+
+        }
+        else if (startAndEndPointMode.equals(MouseMode.MOVE))
+        {
+            paintCanvas.setCursor((new Cursor(Cursor.MOVE_CURSOR)));
+            paintCanvas.addMouseListener(new MDrawer(shapeList, shapeConfig,applicationState));
+        }
+
 
     }
 }

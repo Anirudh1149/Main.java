@@ -3,6 +3,7 @@ package model.persistence;
 import model.Points;
 import model.*;
 import model.dialogs.DialogProvider;
+import model.dialogs.Proxy;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
 import view.interfaces.IUiModule;
@@ -23,6 +24,8 @@ public class ApplicationState implements IApplicationState {
     private MouseMode activeMouseMode;
     private Points startPoint, endPoint, adjustStart, adjustEnd;
     private int width, height;
+    Proxy undoProxy = null;
+    Proxy redoProxy = null;
 
     public ApplicationState(IUiModule uiModule) {
         this.uiModule = uiModule;
